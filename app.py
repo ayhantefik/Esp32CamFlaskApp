@@ -10,8 +10,6 @@ import cv2
 import numpy as np
 import time
 
-REAL_IMAGES_DIR = "images/real/"
-
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'secretkey!'
