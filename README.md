@@ -10,3 +10,5 @@ ESP32Cam
 <h2>Web Application</h2>
 
 Flask
+
+<img src="./image.jpg" />
