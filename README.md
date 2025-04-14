@@ -11,4 +11,6 @@ ESP32Cam
 
 Flask
 
-<img src="./image.jpg" />
+<h2>Demo</h2>
+<img src="./demo/demo1.png" />
+<img src="./demo/demo2.png" />
