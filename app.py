@@ -10,8 +10,6 @@ import cv2
 import numpy as np
 import time
 
-REAL_IMAGES_DIR = "images/real/"
-
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'secretkey!'
@@ -32,6 +30,7 @@ def get_image():
     global result
     global page_value
     
+    last_result = None
     prev_image_bytes = None
     
     # Record the start time
@@ -46,9 +45,6 @@ def get_image():
             with open("image.jpg", "rb") as f:
                 image_bytes = f.read()
             image = Image.open(BytesIO(image_bytes))
-            print(len(image_bytes))
-            # Text recognition
-            
             if current_time - last_print_time >= print_interval:
                 # Update the last printed time
                 last_print_time = current_time
@@ -69,6 +65,9 @@ def get_image():
                             result = fingercount_model.get_model_result()
                         elif (page_value == 3):
                             result = fruits_model.get_model_result()
+                if (result != last_result):
+                    socketio.emit('message', result)
+                    last_result = result
                 prev_image_bytes = image_bytes
                 
             img_io = BytesIO()
